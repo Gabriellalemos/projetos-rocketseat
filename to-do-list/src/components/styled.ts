@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { gray100, gray400, gray500 } from "./../constants/colors";
+import { gray100, gray400, gray500, purpleDark } from "./../constants/colors";
 
 export const TaskItem = styled.div`
   display: flex;
@@ -14,4 +14,11 @@ export const TaskItem = styled.div`
   border-radius: 8px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
   margin-bottom: 12px;
+`;
+
+export const CheckboxConteiner = styled.div`
+  input {
+    background-color: ${purpleDark};
+    border-radius: 50%;
+  }
 `;

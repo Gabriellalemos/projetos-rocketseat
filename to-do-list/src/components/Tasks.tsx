@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TaskItem } from "./styled";
+import { CheckboxConteiner, TaskItem } from "./styled";
 import trash from "./../assets/trash.png";
 import { gray500, purpleDark } from "./../constants/colors";
 
@@ -8,18 +8,25 @@ interface TasksProps {
   task: string;
   done: boolean;
   onDeleteTask: (id: any) => void;
+  onCheckedTask: (id: any) => void;
 }
 
-const Tasks = ({ id, task, done, onDeleteTask }: TasksProps) => {
+const Tasks = ({ id, task, done, onDeleteTask, onCheckedTask }: TasksProps) => {
   const [isChecked, setIsChecked] = useState(done);
   const handleDeleteTask = () => {
     onDeleteTask(id);
   };
+
+  const handleCheckedTask = () => {
+    onCheckedTask(id);
+  };
+
   return (
     <TaskItem>
-      <div>
+      <CheckboxConteiner>
         <input
           type="checkbox"
+          onClick={handleCheckedTask}
           checked={isChecked}
           onChange={(e) =>
             setIsChecked(e.target.checked)
@@ -33,7 +40,7 @@ const Tasks = ({ id, task, done, onDeleteTask }: TasksProps) => {
         >
           {task}
         </label>
-      </div>
+      </CheckboxConteiner>
       <button
         style={{
           textDecoration: "none",

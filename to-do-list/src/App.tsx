@@ -42,6 +42,14 @@ function App() {
     setNewTaskText("");
   };
 
+  const checkedTask = (taskId: any) => {
+    const checkedTaskList = taskList.filter((item) => {
+      return taskId === item.id;
+    });
+
+    console.log(checkedTaskList[0].done);
+  };
+
   const deleteTask = (taskId: any) => {
     const deletedTaskList = taskList.filter((item) => {
       return taskId !== item.id;
@@ -50,70 +58,69 @@ function App() {
   };
 
   return (
-    <>
-      <MainContainer>
-        <LogoContainer>
+    <MainContainer>
+      <LogoContainer>
+        <img
+          style={{
+            position: "relative",
+            top: "calc(50% - 24px)",
+          }}
+          src={logo}
+          alt="foguete"
+        />
+      </LogoContainer>
+      <InputContainer>
+        <input
+          name="newTask"
+          style={{
+            height: "3.2rem",
+            marginRight: "0.5rem",
+            backgroundColor: `${gray500}`,
+            border: `${gray700}`,
+            borderRadius: "4px",
+            color: `${gray300}`,
+          }}
+          type="text"
+          size={130}
+          placeholder="Adicione uma nova tarefa"
+          onChange={handleNewTaskChange}
+          value={newTaskText}
+        />
+        <button
+          style={{
+            backgroundColor: `${blueDark}`,
+            border: "none",
+            borderRadius: "4px",
+            padding: "16px",
+            color: `${gray100}`,
+          }}
+          onClick={handleCreateNewTask}
+        >
+          Criar
           <img
             style={{
-              position: "relative",
-              top: "calc(50% - 24px)",
+              marginLeft: "8px",
             }}
-            src={logo}
-            alt="foguete"
+            src={plus}
+            alt="plus"
           />
-        </LogoContainer>
-        <InputContainer>
-          <input
-            name="newTask"
-            style={{
-              height: "3.2rem",
-              marginRight: "0.5rem",
-              backgroundColor: `${gray500}`,
-              border: `${gray700}`,
-              borderRadius: "4px",
-              color: `${gray300}`,
-            }}
-            type="text"
-            size={130}
-            placeholder="Adicione uma nova tarefa"
-            onChange={handleNewTaskChange}
-            value={newTaskText}
-          />
-          <button
-            style={{
-              backgroundColor: `${blueDark}`,
-              border: "none",
-              borderRadius: "4px",
-              padding: "16px",
-              color: `${gray100}`,
-            }}
-            onClick={handleCreateNewTask}
-          >
-            Criar
-            <img
-              style={{
-                marginLeft: "8px",
-              }}
-              src={plus}
-              alt="plus"
+        </button>
+      </InputContainer>
+      <TaskContainer>
+        {taskList.map((task) => {
+          return (
+            <Tasks
+              key={task.name}
+              id={task.id}
+              task={task.name}
+              done={task.done}
+              onDeleteTask={deleteTask}
+              onCheckedTask={checkedTask}
             />
-          </button>
-        </InputContainer>
-        <TaskContainer>
-          {taskList.map((task) => {
-            return (
-              <Tasks
-                key={task.name}
-                id={task.id}
-                task={task.name}
-                done={task.done}
-                onDeleteTask={deleteTask}
-              />
-            );
-          })}
-        </TaskContainer>
-      </MainContainer>
-    </>
+          );
+        })}
+      </TaskContainer>
+    </MainContainer>
   );
 }
 

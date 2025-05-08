@@ -18,3 +18,11 @@ export const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
+
+export const CardContainer = styled.span`
+  display: flex;
+  gap: 8px;
+  flex-direction: row;
+  text-align: center;
+  flex-wrap: wrap;
+`;

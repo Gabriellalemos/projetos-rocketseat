@@ -1,13 +1,16 @@
-import Header from "../../components/Header";
 import itens, { cardapioItens } from "./constants";
-import { ItensContainer, MainContainer, TitleConteiner } from "./styles";
+import {
+  CardContainer,
+  ItensContainer,
+  MainContainer,
+  TitleConteiner,
+} from "./styles";
 import DeliveryIcon from "../../assets/Imagem.png";
 import CardProduct from "../../components/CardProduct";
 
 function Home() {
   return (
     <>
-      <Header />
       <MainContainer>
         <div>
           <TitleConteiner>
@@ -36,11 +39,11 @@ function Home() {
         />
       </MainContainer>
       <h1>Nossos cafés</h1>
-      <div>
+      <CardContainer>
         {cardapioItens.map((product) => (
           <CardProduct key={product.id} product={product} />
         ))}
-      </div>
+      </CardContainer>
     </>
   );
 }
